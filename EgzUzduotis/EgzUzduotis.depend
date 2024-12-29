@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1735503480 source:c:\users\lordofgames\desktop\egzuzd\egzuzd\egzuzduotis\funkcijos.cpp
+	"header.h"
+
+1735503480 c:\users\lordofgames\desktop\egzuzd\egzuzd\egzuzduotis\header.h
+	<iostream>
+	<fstream>
+	<sstream>
+	<string>
+	<map>
+	<algorithm>
+	<cctype>
+
+1735503481 source:c:\users\lordofgames\desktop\egzuzd\egzuzd\egzuzduotis\main.cpp
+	"header.h"
+
