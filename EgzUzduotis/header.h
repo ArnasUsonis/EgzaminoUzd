@@ -8,6 +8,9 @@
 #include <map>
 #include <algorithm>
 #include <cctype>
+#include <locale>
+#include <vector>
+#include <set>
 
 using std::cout;
 using std::endl;
@@ -21,7 +24,10 @@ using std::map;
 using std::getline;
 using std::istringstream;
 using std::remove_if;
+using std::vector;
+using std::set;
 
-void removePunctuation(string& str);
+void keepAlphaNumeric(string& str);
+
 
 #endif // HEADER_H_INCLUDED
