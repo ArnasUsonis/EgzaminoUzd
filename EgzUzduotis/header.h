@@ -30,7 +30,7 @@ using std::set;
 using std::regex;
 using std::sregex_iterator;
 
-void keepAlphaNumeric(string& str);
+void SkyrybosZenkluIstrynimas(string& str);
 
 
 #endif // HEADER_H_INCLUDED

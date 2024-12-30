@@ -3,7 +3,7 @@
 int main(){
     ifstream inputFile("tekstas.txt"); // Failas su tekstu
     ifstream inputFile2("tekstas_URL.txt"); //Url Failas
-    ofstream outputFile("pasikartojantys_zodziai.txt"); // Rezultatų failas
+    ofstream outputFile("pasikartojantys_zodziai.txt"); // Rezultatu failas
     ofstream outputFile2("cross_reference.txt"); // Cross-reference rezultatai
     ofstream outputFile3("urls.txt"); // urlai
 
@@ -11,28 +11,32 @@ int main(){
         cerr << "Nepavyko atidaryti failo tekstas.txt" << endl;
         return 1;
     }
+    if (!inputFile2.is_open()) {
+        cerr << "Nepavyko atidaryti failo tekstas_URL.txt" << endl;
+        return 1;
+    }
 
-    map<string, int> wordCount; // Saugo žodžių pasikartojimo skaičių
-    map<string, set<int>> wordLocations; // Saugo žodžių paminėjimo vietas (galima set pakeisti vector jei norima ziureti kiek kartu tuoje pacioje eiluteje pasikorta)
+    map<string, int> ZodzioKiekis; // Saugo zodziu pasikartojimo skaiciu
+    map<string, set<int>> zodzioVieta; // Saugo zodziu paminejimo vietas (galima set pakeisti vector jei norima ziureti kiek kartu tuoje pacioje eiluteje pasikorta)
     string line, word;
 
-    int lineNumber = 1; // Eilutės numeris
+    int lineNumber = 1; // Eilutes numeris
 
     // Nuskaityti eilutes iš failo
     while (getline(inputFile, line)) {
         istringstream iss(line);
         while (iss >> word) {
-            keepAlphaNumeric(word); // kad pasalintu - ir skyrybos zenklus
+            SkyrybosZenkluIstrynimas(word); // kad pasalintu - ir skyrybos zenklus
             if (!word.empty()) {
-                wordCount[word]++; // Skaičiuojame, kiek kartų žodis pasikartoja
-                wordLocations[word].insert(lineNumber); // Saugo eilutės numerį, kur pasirodė žodis
+                ZodzioKiekis[word]++; // Skaiciuojame, kiek kartu zodis pasikartoja
+                zodzioVieta[word].insert(lineNumber); // Saugo eilutes numeri kur pasirode zodis
             }
         }
         lineNumber++; // pereiname prie kitos eilutes
     }
 
-    // Filtruoti žodžius, kurie pasikartojo daugiau nei vieną kartą
-    for (const auto& [key, value] : wordCount) {
+    // Filtruoti zodzius kurie pasikartojo daugiau nei viena karta
+    for (const auto& [key, value] : ZodzioKiekis) {
         if (value > 1) {
             outputFile << key << ": " << value << "\n";
         }
@@ -40,12 +44,12 @@ int main(){
 
     cout << "Rezultatai issaugoti faile pasikartojantys_zodziai.txt" << endl;
 
-    // Išvedame cross-reference lentelę
-    for (const auto& [key, locations] : wordLocations) {
-        if (wordCount[key] > 1) { // Tik tie žodžiai, kurie pasikartojo
+    // Isvedame cross-reference lentele
+    for (const auto& [key, vieta] : zodzioVieta) {
+        if (ZodzioKiekis[key] > 1) { // Tik tie zodziai kurie pasikartojo
             outputFile2 << key << ": ";
-            for (const int& lineNum : locations) {
-                outputFile2 << lineNum << " "; // Eilutės numeriai, kur pasirodė žodis
+            for (const int& lineNum : vieta) {
+                outputFile2 << lineNum << " "; // Eilutes numeriai kur pasirode zodis
             }
             outputFile2 << "\n";
         }
@@ -57,27 +61,27 @@ int main(){
     string line_url;
     set<string> urls;
 
-    regex urlPattern("(https?://|www\\.|[a-zA-Z0-9-]+\\.[a-zA-Z]{2,})([\\w-./?%&=]*)");
+    regex urlPattern("(https?://|www\\.|[a-zA-Z0-9-]+\\.[a-zA-Z]{2,})([\\w-./?%&=]*)"); //regex israiska
 
-    // Nuskaityti eilutes iš failo
+    // Nuskaityti eilutes is failo
     while (getline(inputFile2, line_url)) {
-        // Paieška pagal reguliariąją išraišką
+        // Paieska pagal reguliariaja israiska
         auto wordsBegin = sregex_iterator(line_url.begin(), line_url.end(), urlPattern);
         auto wordsEnd = sregex_iterator();
 
-        // Surasti visus URL šioje eilutėje ir įdėti į vektorių
+        // Surasti visus URL sioje eiluteje ir ideti i vektoriu
         for (sregex_iterator i = wordsBegin; i != wordsEnd; ++i) {
             urls.insert(i->str());
         }
     }
 
-    // Išvedame URL į ekraną ir į failą
+    // Isvedame URL i faila
     if (!urls.empty()) {
     for (const string& url : urls) {
-        outputFile3 << url << endl;  // Tik išvedame į failą
+        outputFile3 << url << endl;  //isvedame i faila
     }
      }else {
-       outputFile3 << "Nepavyko rasti URL.\n";  // Jei nerandame URL, išvedame klaidos žinutę
+       outputFile3 << "Nepavyko rasti URL.\n";  // Jei nerandame URL, isvedame klaidos zinute
      }
 
      cout << "URL adresai issaugoti faile urls.txt" << endl;

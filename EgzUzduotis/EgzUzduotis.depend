@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1735509945 source:c:\users\lordofgames\desktop\egzuzd\egzuzd\egzuzduotis\funkcijos.cpp
+1735558739 source:c:\users\lordofgames\desktop\egzuzd\egzuzd\egzuzduotis\funkcijos.cpp
 	"header.h"
 
-1735517308 c:\users\lordofgames\desktop\egzuzd\egzuzd\egzuzduotis\header.h
+1735558739 c:\users\lordofgames\desktop\egzuzd\egzuzd\egzuzduotis\header.h
 	<iostream>
 	<fstream>
 	<sstream>
@@ -15,6 +15,6 @@
 	<set>
 	<regex>
 
-1735517879 source:c:\users\lordofgames\desktop\egzuzd\egzuzd\egzuzduotis\main.cpp
+1735558934 source:c:\users\lordofgames\desktop\egzuzd\egzuzd\egzuzduotis\main.cpp
 	"header.h"
 
