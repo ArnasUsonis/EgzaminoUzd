@@ -36,24 +36,27 @@ int main(){
     }
 
     // Filtruoti zodzius kurie pasikartojo daugiau nei viena karta
-    for (const auto& [key, value] : ZodzioKiekis) {
-        if (value > 1) {
-            outputFile << key << ": " << value << "\n";
-        }
+    for (const auto& pair : ZodzioKiekis) {
+    if (pair.second > 1) {
+        outputFile << pair.first << ": " << pair.second << "\n";
     }
+  }
 
     cout << "Rezultatai issaugoti faile pasikartojantys_zodziai.txt" << endl;
 
     // Isvedame cross-reference lentele
-    for (const auto& [key, vieta] : zodzioVieta) {
-        if (ZodzioKiekis[key] > 1) { // Tik tie zodziai kurie pasikartojo
-            outputFile2 << key << ": ";
-            for (const int& lineNum : vieta) {
-                outputFile2 << lineNum << " "; // Eilutes numeriai kur pasirode zodis
-            }
-            outputFile2 << "\n";
+    for (const auto& pair : zodzioVieta) {
+    const string& key = pair.first;
+    const set<int>& vieta = pair.second;
+
+    if (ZodzioKiekis[key] > 1) { // Tik tie žodžiai, kurie pasikartojo
+        outputFile2 << key << ": ";
+        for (const int& lineNum : vieta) {
+            outputFile2 << lineNum << " "; // Eilutės numeriai
         }
+        outputFile2 << "\n";
     }
+  }
 
     cout << "Cross-reference lentele issaugota faile cross_reference.txt" << endl;
 
@@ -92,5 +95,6 @@ int main(){
     outputFile2.close();
     outputFile3.close();
 
+    system("pause");
     return 0;
 }

@@ -18,3 +18,19 @@
 1735558934 source:c:\users\lordofgames\desktop\egzuzd\egzuzd\egzuzduotis\main.cpp
 	"header.h"
 
+1735558739 source:c:\users\lordofgames\desktop\egzuzd\egzuzd\egzuzduotis\project\funkcijos.cpp
+	"header.h"
+
+1735558739 c:\users\lordofgames\desktop\egzuzd\egzuzd\egzuzduotis\project\header.h
+	<iostream>
+	<fstream>
+	<sstream>
+	<string>
+	<map>
+	<algorithm>
+	<cctype>
+	<locale>
+	<vector>
+	<set>
+	<regex>
+
