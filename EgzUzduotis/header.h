@@ -11,6 +11,7 @@
 #include <locale>
 #include <vector>
 #include <set>
+#include <regex>
 
 using std::cout;
 using std::endl;
@@ -26,6 +27,8 @@ using std::istringstream;
 using std::remove_if;
 using std::vector;
 using std::set;
+using std::regex;
+using std::sregex_iterator;
 
 void keepAlphaNumeric(string& str);
 

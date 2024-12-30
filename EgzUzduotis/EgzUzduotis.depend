@@ -2,7 +2,7 @@
 1735509945 source:c:\users\lordofgames\desktop\egzuzd\egzuzd\egzuzduotis\funkcijos.cpp
 	"header.h"
 
-1735513967 c:\users\lordofgames\desktop\egzuzd\egzuzd\egzuzduotis\header.h
+1735517308 c:\users\lordofgames\desktop\egzuzd\egzuzd\egzuzduotis\header.h
 	<iostream>
 	<fstream>
 	<sstream>
@@ -13,7 +13,8 @@
 	<locale>
 	<vector>
 	<set>
+	<regex>
 
-1735509217 source:c:\users\lordofgames\desktop\egzuzd\egzuzd\egzuzduotis\main.cpp
+1735517879 source:c:\users\lordofgames\desktop\egzuzd\egzuzd\egzuzduotis\main.cpp
 	"header.h"
 

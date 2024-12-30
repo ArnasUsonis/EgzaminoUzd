@@ -53,6 +53,35 @@ int main(){
 
     cout << "Cross-reference lentele issaugota faile cross_reference.txt" << endl;
 
+    //paieskos URL
+    string line_url;
+    set<string> urls;
+
+    regex urlPattern("(https?://|www\\.|[a-zA-Z0-9-]+\\.[a-zA-Z]{2,})([\\w-./?%&=]*)");
+
+    // Nuskaityti eilutes iš failo
+    while (getline(inputFile2, line_url)) {
+        // Paieška pagal reguliariąją išraišką
+        auto wordsBegin = sregex_iterator(line_url.begin(), line_url.end(), urlPattern);
+        auto wordsEnd = sregex_iterator();
+
+        // Surasti visus URL šioje eilutėje ir įdėti į vektorių
+        for (sregex_iterator i = wordsBegin; i != wordsEnd; ++i) {
+            urls.insert(i->str());
+        }
+    }
+
+    // Išvedame URL į ekraną ir į failą
+    if (!urls.empty()) {
+    for (const string& url : urls) {
+        outputFile3 << url << endl;  // Tik išvedame į failą
+    }
+     }else {
+       outputFile3 << "Nepavyko rasti URL.\n";  // Jei nerandame URL, išvedame klaidos žinutę
+     }
+
+     cout << "URL adresai issaugoti faile urls.txt" << endl;
+
     inputFile.close();
     inputFile2.close();
     outputFile.close();
